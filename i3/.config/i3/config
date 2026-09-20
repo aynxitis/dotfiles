@@ -43,7 +43,7 @@ exec --no-startup-id sh -c 'sleep 3; ~/.config/i3/scripts/mic-mute-all.sh mute'
 exec_always --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/Wallpapers/dark-mountains-landscape-surreal-design-best-hd-4k-liquid-glass-wallpapers-for-macos-26-tahoe-and-windows-pc-reddit-and-tumblr-25-08-2025-1756153239-hd-wallpaper.png
 
 # uncomment as each phase lands:
-# exec_always --no-startup-id ~/.local/bin/restart-picom
+exec_always --no-startup-id ~/.local/bin/restart-picom
 # exec_always --no-startup-id ~/.config/polybar/launch.sh
 # exec --no-startup-id dunst
 
