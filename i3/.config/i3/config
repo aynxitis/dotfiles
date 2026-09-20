@@ -45,8 +45,8 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/Wallpapers/dark-
 
 # uncomment as each phase lands:
 exec_always --no-startup-id ~/.local/bin/restart-picom
-# exec_always --no-startup-id ~/.config/polybar/launch.sh
-# exec --no-startup-id dunst
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id dunst
 
 # ── launch / kill ───────────────────────────────
 bindsym $mod+Return exec --no-startup-id $term
