@@ -19,7 +19,7 @@ set $focusborder #4A6E85
 # ── frame ───────────────────────────────────────
 default_border pixel 2
 default_floating_border pixel 2
-gaps inner 14
+gaps inner 8
 gaps outer 2
 smart_gaps on
 hide_edge_borders smart
@@ -129,7 +129,7 @@ assign [class="code"] $ws4
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+x exec --no-startup-id i3lock -c 1C1C1E
+bindsym $mod+Shift+x exec --no-startup-id i3lock -c 000000
 
 # ── resize ──────────────────────────────────────
 mode "resize" {

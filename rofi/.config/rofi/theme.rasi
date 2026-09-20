@@ -12,11 +12,11 @@
 }
 
 window {
-  width: 480px;
+  width: 1000px;
   background-color: @base;
   border: 1px;
   border-color: @line;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 0;
 }
 
