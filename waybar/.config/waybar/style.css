@@ -1,5 +1,5 @@
 * {
-    font-family: "JetBrainsMono Nerd Font", "Font Awesome 7 Free", "Font Awesome 7 Brands", sans-serif;
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
     font-size: 13px;
     font-weight: bold;
     min-height: 0;
@@ -10,15 +10,15 @@ window#waybar {
     color: #1c1c1e;
 }
 
-/* Solid light glass pills */
+/* Solid light glass pills.
+   #status is the group holding pulseaudio + network + battery, so those three
+   share one capsule instead of carrying three of their own. */
 #custom-launcher,
 #taskbar,
-#hyprland-window,
 #workspaces,
-#custom-updates,
-#pulseaudio,
+#tray,
+#status,
 #custom-power,
-#network,
 #clock {
     background-color: rgba(255, 255, 255, 0.55);
     border-radius: 20px;
@@ -37,6 +37,10 @@ window#waybar {
 
 #taskbar item {
     padding: 0 5px;
+}
+
+#tray {
+    padding: 0 10px;
 }
 
 /* Workspace capsule + dots */
@@ -58,4 +62,18 @@ window#waybar {
     padding: 0 18px;
 }
 
-/* Bare, no-pill modules */
+/* Members of the #status group: no pill of their own, they sit inside it */
+#pulseaudio,
+#network,
+#battery {
+    background-color: transparent;
+    padding: 0 6px;
+    margin: 0;
+    color: #1c1c1e;
+}
+
+/* Low battery uses the palette's urgent red */
+#battery.warning,
+#battery.critical {
+    color: #FF453A;
+}

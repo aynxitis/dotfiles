@@ -9,7 +9,7 @@
 
     "modules-left": ["custom/launcher", "wlr/taskbar"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["network", "custom/power", "clock"],
+    "modules-right": ["tray", "group/status", "custom/power", "clock"],
 
     "custom/launcher": {
         "format": "Apps",
@@ -25,11 +25,6 @@
         "on-click-middle": "close"
     },
 
-    "hyprland/window": {
-        "format": "{}",
-        "max-length": 50
-    },
-
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -43,40 +38,55 @@
         }
     },
 
-    "custom/updates": {
-        "format": "{}",
-        "exec": "checkupdates 2>/dev/null | wc -l",
-        "interval": 3600,
-        "on-click": "kitty -e sh -c 'sudo pacman -Syu; read -p \"Press enter to close\"'",
-        "tooltip": false
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    "group/status": {
+        "orientation": "horizontal",
+        "modules": ["pulseaudio", "network", "battery"]
     },
 
     "pulseaudio": {
-        "format": "{volume}%",
-        "format-muted": "Muted",
-        "on-click": "pavucontrol"
+        "format": "{icon} {volume}%",
+        "format-muted": " muted",
+        "format-icons": {
+            "headphone": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "tooltip-format": "{desc}: {volume}%"
     },
 
-    "custom/sysmonitor": {
-        "format": "{}",
-        "exec": "~/.config/waybar/scripts/sysmonitor.sh",
-        "return-type": "json",
-        "interval": 5,
-        "tooltip": true
+    "network": {
+        "format-wifi": " {essid} {signalStrength}%",
+        "format-ethernet": " {ifname}",
+        "format-disconnected": " offline",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "no connection",
+        "interval": 10
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval": 30,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "{timeTo}"
     },
 
     "custom/power": {
         "format": "⏻",
         "on-click": "wlogout",
         "tooltip": false
-    },
-
-    "network": {
-        "format-wifi": "{ipaddr}",
-        "format-ethernet": "{ipaddr}",
-        "format-disconnected": "Offline",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "interval": 5
     },
 
     "clock": {
