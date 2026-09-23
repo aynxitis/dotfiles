@@ -6,17 +6,24 @@
     "margin-left": 10,
     "margin-right": 10,
     "spacing": 8,
-
-    "modules-left": ["custom/launcher", "wlr/taskbar"],
-    "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "group/status", "custom/power", "clock"],
-
+    "modules-left": [
+        "custom/launcher",
+        "wlr/taskbar"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "tray",
+        "group/status",
+        "custom/power",
+        "clock"
+    ],
     "custom/launcher": {
         "format": "Apps",
         "on-click": "rofi -show drun",
         "tooltip": false
     },
-
     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 18,
@@ -24,7 +31,6 @@
         "on-click": "activate",
         "on-click-middle": "close"
     },
-
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -37,7 +43,6 @@
             "default": ""
         }
     },
-
     "tray": {
         "icon-size": 16,
         "spacing": 8,
@@ -45,33 +50,37 @@
             "nm-applet": "network-wireless-signal-good-symbolic"
         }
     },
-
     "group/status": {
         "orientation": "horizontal",
-        "modules": ["pulseaudio", "network", "battery"]
+        "modules": [
+            "pulseaudio",
+            "network",
+            "battery"
+        ]
     },
-
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "  muted",
+        "format": "{icon}{volume}%",
+        "format-muted": "  muted",
         "format-icons": {
-            "headphone": "",
-            "default": ["", "", ""]
+            "headphone": "     ",
+            "default": [
+                "  ",
+                "   ",
+                "    "
+            ]
         },
         "on-click": "pavucontrol",
         "tooltip-format": "{desc}: {volume}%"
     },
-
     "network": {
-        "format-wifi": "  {essid} {signalStrength}%",
+        "format-wifi": "    {essid}",
         "format-ethernet": "  {ifname}",
-        "format-disconnected": "  offline",
+        "format-disconnected": "   offline",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "no connection",
         "interval": 10
     },
-
     "battery": {
         "bat": "BAT0",
         "interval": 30,
@@ -79,19 +88,23 @@
             "warning": 20,
             "critical": 10
         },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-plugged": "{icon}  {capacity}%",
-        "format-icons": ["", "", "", "", ""],
+        "format": "{icon}{capacity}%",
+        "format-charging": "    {capacity}%",
+        "format-plugged": "{icon}{capacity}%",
+        "format-icons": [
+            "  ",
+            "  ",
+            "  ",
+            "  ",
+            "  "
+        ],
         "tooltip-format": "{timeTo}"
     },
-
     "custom/power": {
         "format": "⏻",
         "on-click": "wlogout -b 5",
         "tooltip": false
     },
-
     "clock": {
         "format": "{:%H:%M}",
         "format-alt": "{:%Y-%m-%d}",
