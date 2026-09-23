@@ -40,7 +40,10 @@
 
     "tray": {
         "icon-size": 16,
-        "spacing": 8
+        "spacing": 8,
+        "icons": {
+            "nm-applet": "network-wireless-signal-good-symbolic"
+        }
     },
 
     "group/status": {

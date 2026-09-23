@@ -39,8 +39,13 @@ window#waybar {
     padding: 0 5px;
 }
 
+/* nm-applet is remapped to a symbolic icon (see config.jsonc "tray".icons);
+   GTK recolours symbolic icons from this `color`, which is how the tray stays
+   dark on the light pill. Non-symbolic items (Cloudflare WARP ships a
+   fixed-colour png) are unaffected and keep their own colours. */
 #tray {
     padding: 0 10px;
+    color: #1c1c1e;
 }
 
 /* Workspace capsule + dots */

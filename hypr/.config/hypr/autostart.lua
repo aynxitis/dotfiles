@@ -15,12 +15,11 @@ hl.on("hyprland.start", function()
 
     -- shell
     hl.exec_cmd("nm-applet")
-    -- Waybar runs with its own XDG_CONFIG_HOME so it picks up a LIGHT icon
-    -- theme for the tray (the bar has light glass pills; Papirus-Dark panel
-    -- icons are near-white and wash out). Its own config/style are passed
-    -- explicitly because overriding XDG_CONFIG_HOME moves the default lookup.
-    -- System-wide GTK theming is untouched.
-    hl.exec_cmd("env XDG_CONFIG_HOME=$HOME/.config/waybar-gtk waybar -c $HOME/.config/waybar/config.jsonc -s $HOME/.config/waybar/style.css")
+    -- Tray icons: nm-applet is remapped to a symbolic icon in waybar's config,
+    -- which GTK recolours from the CSS `color` on #tray. That keeps the tray
+    -- readable on the light pills without overriding XDG_CONFIG_HOME, which
+    -- used to leak into anything an on-click launched.
+    hl.exec_cmd("waybar")
     hl.exec_cmd("dunst")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("hyprctl setcursor macOS 24")
