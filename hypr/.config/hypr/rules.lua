@@ -11,6 +11,6 @@
 hl.window_rule({ name = "float-pavucontrol", match = { class = "org.pulseaudio.pavucontrol" }, float = true, size = "720 480" })
 hl.window_rule({ name = "brave-ws1", match = { class = "brave-browser" }, workspace = "1" })
 hl.window_rule({ name = "discord-ws2", match = { class = "discord" }, workspace = "2" })
-hl.window_rule({ name = "spotify-ws2", match = { class = "Spotify" }, workspace = "2" })
+hl.window_rule({ name = "spotify-ws2", match = { class = "spotify" }, workspace = "2" })
 hl.window_rule({ name = "code-ws4", match = { class = "code" }, workspace = "4" })
 hl.window_rule({ name = "obsidian-ws3", match = { class = "md.obsidian.Obsidian" }, workspace = "3" })
