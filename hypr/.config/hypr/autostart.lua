@@ -14,19 +14,9 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("playerctld daemon")
 
     -- shell
-    -- Tray icons: nm-applet is remapped to a symbolic icon in waybar's config,
-    -- which GTK recolours from the CSS `color` on #tray. That keeps the tray
-    -- readable on the light pills without overriding XDG_CONFIG_HOME, which
-    -- used to leak into anything an on-click launched.
+    -- No tray, and no nm-applet: the network module's on-click opens a
+    -- nmcli+rofi picker instead (waybar/scripts/wifi-menu.sh).
     hl.exec_cmd("waybar")
-    -- nm-applet must start AFTER waybar's StatusNotifierWatcher exists, and as
-    -- early as possible once it does. Tray order is registration order (waybar
-    -- displays it reversed), and Cloudflare WARP -- already running under
-    -- warp-taskbar.service -- only re-registers once the watcher reappears,
-    -- which it does slowly. Registering nm-applet first therefore puts WARP
-    -- last, which renders it leftmost. gdbus wait removes the startup race
-    -- that a bare ordering or a fixed sleep would leave behind.
-    hl.exec_cmd("sh -c 'gdbus wait --session --timeout 15 org.kde.StatusNotifierWatcher && exec nm-applet'")
     hl.exec_cmd("dunst")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("hyprctl setcursor macOS 24")

@@ -14,7 +14,6 @@
         "hyprland/workspaces"
     ],
     "modules-right": [
-        "tray",
         "group/status",
         "custom/power",
         "clock"
@@ -43,13 +42,6 @@
             "default": ""
         }
     },
-    "tray": {
-        "icon-size": 16,
-        "spacing": 8,
-        "icons": {
-            "nm-applet": "network-wireless-signal-good-symbolic"
-        }
-    },
     "group/status": {
         "orientation": "horizontal",
         "modules": [
@@ -76,10 +68,11 @@
         "format-wifi": "    {essid}",
         "format-ethernet": "  {ifname}",
         "format-disconnected": "   offline",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}\nclick to pick a network",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "no connection",
-        "interval": 10
+        "interval": 10,
+        "on-click": "~/.config/waybar/scripts/wifi-menu.sh"
     },
     "battery": {
         "bat": "BAT0",
