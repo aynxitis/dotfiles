@@ -1,1 +1,7 @@
 *.swp
+*.bak
+*.good
+*.orig
+
+# Machine-local shell config (secrets, tokens) - never commit
+.bashrc.local

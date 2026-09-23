@@ -1,0 +1,87 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 8,
+
+    "modules-left": ["custom/launcher", "wlr/taskbar"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["network", "custom/power", "clock"],
+
+    "custom/launcher": {
+        "format": "Apps",
+        "on-click": "rofi -show drun",
+        "tooltip": false
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "*": 5
+        },
+        "format-icons": {
+            "active": "",
+            "default": ""
+        }
+    },
+
+    "custom/updates": {
+        "format": "{}",
+        "exec": "checkupdates 2>/dev/null | wc -l",
+        "interval": 3600,
+        "on-click": "kitty -e sh -c 'sudo pacman -Syu; read -p \"Press enter to close\"'",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "{volume}%",
+        "format-muted": "Muted",
+        "on-click": "pavucontrol"
+    },
+
+    "custom/sysmonitor": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/sysmonitor.sh",
+        "return-type": "json",
+        "interval": 5,
+        "tooltip": true
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi": "{ipaddr}",
+        "format-ethernet": "{ipaddr}",
+        "format-disconnected": "Offline",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "interval": 5
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    }
+}
