@@ -48,7 +48,7 @@ hl.bind(mainMod .. " + 0", hl.dsp.focus({ workspace = "10" }))
 hl.bind(mainMod .. " + SHIFT + 0", hl.dsp.window.move({ workspace = "10" }))
 
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("hyprlock"))
-hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("wlogout"))
+hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("wlogout -b 5"))
 
 hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
