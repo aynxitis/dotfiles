@@ -1,50 +1,65 @@
+/*
+ * wlogout - palette:
+ *   base #1C1C1E  elevated #2C2C2E  label #E5E5E7
+ *   secondary #98989D  accent #4A6E85  urgent #FF453A
+ *
+ * Icons are local recoloured copies in ./icons/. The ones shipped in
+ * /usr/share/wlogout/icons are #d4bff9 lavender and, being fixed-colour PNGs,
+ * cannot be restyled from CSS. url() resolves relative to this file.
+ */
+
 * {
-	background-image: none;
-	box-shadow: none;
+    background-image: none;
+    box-shadow: none;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
 }
 
 window {
-	background-color: rgba(12, 12, 12, 0.9);
+    background-color: rgba(28, 28, 30, 0.92);
 }
 
 button {
+    color: #E5E5E7;
+    background-color: #1C1C1E;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #2C2C2E;
     border-radius: 0;
-    border-color: black;
-	text-decoration-color: #FFFFFF;
-    color: #FFFFFF;
-	background-color: #1E1E1E;
-	border-style: solid;
-	border-width: 1px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 15%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 22%;
+    outline-style: none;
 }
 
-button:focus, button:active, button:hover {
-	background-color: #d63c4a;
-	outline-style: none;
+/* Pointer highlight. This is the single filled state. */
+button:hover {
+    background-color: #4A6E85;
+    border-color: #4A6E85;
+    color: #E5E5E7;
 }
 
-#lock {
-    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+/* Keyboard focus is a ring, never a fill, so it can never be mistaken for the
+   hover highlight. Previously :focus shared the fill rule with :hover, which
+   left the first button (Lock, focused on open) looking permanently selected
+   while the pointer highlighted a different one. */
+button:focus {
+    background-color: #1C1C1E;
+    border-color: #4A6E85;
+    color: #E5E5E7;
 }
 
-#logout {
-    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+/* When the focused button is also the hovered one, hover wins. */
+button:focus:hover,
+button:active {
+    background-color: #4A6E85;
+    border-color: #4A6E85;
+    color: #E5E5E7;
 }
 
-#suspend {
-    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
-}
-
-#hibernate {
-    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
-}
-
-#shutdown {
-    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
-}
-
-#reboot {
-    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
-}
+#lock      { background-image: image(url("icons/lock.png")); }
+#logout    { background-image: image(url("icons/logout.png")); }
+#suspend   { background-image: image(url("icons/suspend.png")); }
+#hibernate { background-image: image(url("icons/hibernate.png")); }
+#shutdown  { background-image: image(url("icons/shutdown.png")); }
+#reboot    { background-image: image(url("icons/reboot.png")); }
