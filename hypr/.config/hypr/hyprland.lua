@@ -15,5 +15,6 @@
 require("monitors")    -- outputs, modes, scale
 require("env")         -- environment variables
 require("autostart")   -- exec on hyprland.start
-require("looks")       -- general / decoration / animations / window rules
+require("looks")       -- general / decoration / animations / smart gaps
 require("binds")       -- keybinds and submaps
+require("rules")       -- window placement and float rules
