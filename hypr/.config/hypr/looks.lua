@@ -9,8 +9,8 @@ hl.config({
         gaps_out = 10,
         border_size = 2,
         col = {
-            active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(595959aa)",
+            active_border   = "rgba(4A6E85ff)",
+            inactive_border = "rgba(2C2C2Eff)",
         },
         resize_on_border = false,
         layout = "dwindle",
@@ -48,10 +48,12 @@ hl.config({
 hl.curve("easeOutQuint", { type = "bezier", points = { {0.23, 1}, {0.32, 1} } })
 hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1} } })
 hl.curve("linear", { type = "bezier", points = { {0, 0}, {1, 1} } })
+hl.curve("easy", { type = "spring", mass = 1, stiffness = 238.1191, dampening = 24.21279333 })
 
 -- animation tree
-hl.animation({ leaf = "windows", enabled = false })
-hl.animation({ leaf = "windowsOut", enabled = false })
+hl.animation({ leaf = "windows", enabled = true, speed = 4.79, spring = "easy" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 4.1, spring = "easy", style = "popin 87%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 1.49, bezier = "linear", style = "popin 87%" })
 hl.animation({ leaf = "fade", enabled = true, speed = 1, bezier = "linear" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "border", enabled = true, speed = 1, bezier = "linear" })
