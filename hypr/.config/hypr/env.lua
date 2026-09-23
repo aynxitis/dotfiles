@@ -1,0 +1,8 @@
+-----------------------------
+---- ENVIRONMENT VARIABLES ---
+-----------------------------
+-- hl.env("NAME", "value")
+--
+-- Nothing is set here yet. Cursor and toolkit vars land here in a later pass.
+-- Intentionally empty so this split is behaviour-identical to the single-file
+-- config it replaces.
