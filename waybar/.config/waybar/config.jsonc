@@ -49,8 +49,8 @@
     },
 
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": " muted",
+        "format": "{icon}  {volume}%",
+        "format-muted": "  muted",
         "format-icons": {
             "headphone": "",
             "default": ["", "", ""]
@@ -60,9 +60,9 @@
     },
 
     "network": {
-        "format-wifi": " {essid} {signalStrength}%",
-        "format-ethernet": " {ifname}",
-        "format-disconnected": " offline",
+        "format-wifi": "  {essid} {signalStrength}%",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "  offline",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format-disconnected": "no connection",
@@ -90,7 +90,7 @@
     },
 
     "clock": {
-        "format": "{:%I:%M %p}",
+        "format": "{:%H:%M}",
         "format-alt": "{:%Y-%m-%d}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     }
