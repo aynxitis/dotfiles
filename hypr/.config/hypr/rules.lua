@@ -14,3 +14,17 @@ hl.window_rule({ name = "discord-ws2", match = { class = "discord" }, workspace 
 hl.window_rule({ name = "spotify-ws2", match = { class = "spotify" }, workspace = "2" })
 hl.window_rule({ name = "code-ws4", match = { class = "code" }, workspace = "4" })
 hl.window_rule({ name = "obsidian-ws3", match = { class = "md.obsidian.Obsidian" }, workspace = "3" })
+
+---------------------
+---- LAYER RULES ----
+---------------------
+-- https://wiki.hypr.land/Configuring/Window-Rules/#layer-rules
+-- decoration:blur (see looks.lua) only affects windows; layer surfaces such as
+-- the bar need an explicit rule, which is why the bar was flat translucent
+-- white rather than frosted.
+--
+-- ignore_alpha matters here: waybar's window background is fully transparent
+-- and only the pills carry alpha 0.55, so without a threshold the blur would
+-- apply across the whole bar strip instead of just the pills.
+
+hl.layer_rule({ name = "blur-waybar", match = { namespace = "waybar" }, blur = true, ignore_alpha = 0.1 })
