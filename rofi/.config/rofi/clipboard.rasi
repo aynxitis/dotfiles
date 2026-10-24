@@ -7,8 +7,8 @@ window {
     width: 340px;
     location: north east;
     anchor: north east;
-    x-offset: -2px;
-    y-offset: 0px;
+    x-offset: -9px;
+    y-offset: 1px;
     background-color: #080808dd;
     border: 1px;
     border-color: #353535;
