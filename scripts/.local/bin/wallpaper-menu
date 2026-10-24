@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Pick a wallpaper from a rofi thumbnail grid. Bound to SUPER+Shift+Tab.
+
+source "$(dirname "$(readlink -f "$0")")/wallpaper-lib"
+
+mapfile -d '' WALLPAPERS < <(list_wallpapers)
+((${#WALLPAPERS[@]})) || exit 1
+
+CHOICE=$(
+    for i in "${!WALLPAPERS[@]}"; do
+        printf '%s\0icon\x1f%s\n' "$(basename "${WALLPAPERS[$i]}")" "${WALLPAPERS[$i]}"
+    done | rofi -dmenu -i -show-icons -format i -theme ~/.config/rofi/wallpaper.rasi
+) || exit 0
+
+[[ "$CHOICE" =~ ^[0-9]+$ ]] || exit 0
+set_wallpaper "${WALLPAPERS[$CHOICE]}" || exit 1
+mkdir -p "$(dirname "$STATE_FILE")"
+printf '%s\n' "$CHOICE" > "$STATE_FILE"

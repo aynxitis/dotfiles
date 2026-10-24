@@ -18,7 +18,8 @@ hl.on("hyprland.start", function()
     -- nmcli+rofi picker instead (waybar/scripts/wifi-menu.sh).
     hl.exec_cmd("waybar")
     hl.exec_cmd("dunst")
-    hl.exec_cmd("hyprpaper")
+    -- awww restores the last wallpaper from its cache on start.
+    hl.exec_cmd("awww-daemon")
     hl.exec_cmd("hyprctl setcursor macOS 24")
 
     -- apps

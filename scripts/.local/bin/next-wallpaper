@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Cycle to the next wallpaper. Bound to SUPER+Tab in Hyprland.
+
+source "$(dirname "$(readlink -f "$0")")/wallpaper-lib"
+
+mapfile -d '' WALLPAPERS < <(list_wallpapers)
+((${#WALLPAPERS[@]})) || exit 1
+
+INDEX=0
+[[ -f "$STATE_FILE" ]] && read -r INDEX < "$STATE_FILE"
+[[ "$INDEX" =~ ^[0-9]+$ ]] || INDEX=0
+INDEX=$(( (INDEX + 1) % ${#WALLPAPERS[@]} ))
+
+set_wallpaper "${WALLPAPERS[$INDEX]}" || exit 1
+mkdir -p "$(dirname "$STATE_FILE")"
+printf '%s\n' "$INDEX" > "$STATE_FILE"

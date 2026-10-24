@@ -11,6 +11,7 @@
 local mainMod  = "SUPER"
 local terminal = "kitty"
 local menu     = "rofi -show drun"
+local bin      = os.getenv("HOME") .. "/.local/bin/"
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
@@ -39,6 +40,10 @@ hl.bind(mainMod .. " + SHIFT + Right", hl.dsp.window.swap({ direction = "r" }))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind(mainMod .. " + W", hl.dsp.group.toggle())
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }))
+
+-- wallpaper (awww)
+hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd(bin .. "next-wallpaper"))
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.exec_cmd(bin .. "wallpaper-menu"))
 
 for i = 1, 9 do
     hl.bind(mainMod .. " + " .. i, hl.dsp.focus({ workspace = tostring(i) }))
