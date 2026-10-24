@@ -20,9 +20,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("dunst")
     -- awww restores the last wallpaper from its cache on start.
     hl.exec_cmd("awww-daemon")
-    -- clipboard history for SUPER+V (cliphist)
-    hl.exec_cmd("wl-paste --type text --watch cliphist store")
-    hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("hyprctl setcursor macOS 24")
 
     -- apps

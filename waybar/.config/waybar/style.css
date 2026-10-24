@@ -25,8 +25,8 @@
   border: 1px solid @border;
 }
 
-#right2,
-#right3 {
+#right3,
+#right4 {
   background-color: @background; 
   border-radius: 20px;          
   padding: 2px 5px;
@@ -118,7 +118,6 @@ mpris.empty {
 }
 
 #clock:hover,
-#backlight:hover,
 #cpu:hover,
 #network:hover,
 #bluetooth:hover,
@@ -128,14 +127,14 @@ mpris.empty {
   transition: .7s;
 }
 
-#custom-clipboard {
+#custom-power {
     padding: 0 10px;
     color: @foreground;
     font-size: 16px;
     margin: 0 4px;
 }
 
-#custom-clipboard:hover {
+#custom-power:hover {
     color: @foreground;
     background-color: @border;
     border-radius: 8px;
@@ -211,15 +210,6 @@ tooltip {
   color: @foreground;
 }
 
-
-#backlight {
-  font-size: 15px;
-  background-color: @border;
-  color: @foreground;
-  padding: 5px 15px 5px 11px;
-  margin: 2px 2px;
-  border-radius: 15px;
-}
 
 /* Low battery: urgent red (states are defined in config.jsonc). */
 #battery.warning,
