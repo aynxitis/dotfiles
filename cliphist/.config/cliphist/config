@@ -1,0 +1,2 @@
+# Read by every cliphist invocation, including the wl-paste watchers.
+max-items 100
