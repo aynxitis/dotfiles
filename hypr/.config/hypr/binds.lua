@@ -45,6 +45,9 @@ hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float({ action = "toggle" }
 hl.bind(mainMod .. " + Tab", hl.dsp.exec_cmd(bin .. "next-wallpaper"))
 hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.exec_cmd(bin .. "wallpaper-menu"))
 
+-- clipboard history (cliphist)
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(bin .. "clipboard-history"))
+
 for i = 1, 9 do
     hl.bind(mainMod .. " + " .. i, hl.dsp.focus({ workspace = tostring(i) }))
     hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = tostring(i) }))
