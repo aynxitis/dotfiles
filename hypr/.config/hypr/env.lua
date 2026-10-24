@@ -13,3 +13,7 @@
 -- /usr/share/icons/default/index.theme inherits.
 hl.env("XCURSOR_THEME", "macOS")
 hl.env("XCURSOR_SIZE", "24")
+
+-- ssh-agent from the systemd user socket (systemctl --user enable ssh-agent.socket),
+-- so git in apps launched from Hyprland (e.g. VS Code) can reach it.
+hl.env("SSH_AUTH_SOCK", os.getenv("XDG_RUNTIME_DIR") .. "/ssh-agent.socket")

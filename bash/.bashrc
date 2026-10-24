@@ -21,5 +21,9 @@ export PATH=~/.npm-global/bin:$PATH
 # Github commits
 alias updates='cd ~/Projects/updates && python3 streak.py'
 
+# ssh-agent from the systemd user socket (ssh-agent.socket), unless a
+# session already provides one.
+[[ -z $SSH_AUTH_SOCK ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # Machine-local config (secrets, tokens). Gitignored, never stowed.
 [[ -f ~/.bashrc.local ]] && . ~/.bashrc.local
