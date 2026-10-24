@@ -10,7 +10,7 @@
 ---------------------
 local mainMod  = "SUPER"
 local terminal = "kitty"
-local menu     = "rofi -show drun"
+local menu     = "rofi -show drun -theme myrofi-theme"
 local bin      = os.getenv("HOME") .. "/.local/bin/"
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
