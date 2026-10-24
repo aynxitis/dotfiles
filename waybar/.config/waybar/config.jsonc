@@ -1,106 +1,122 @@
+// Adapted from RafikW19's My-Dotfiles (dark pills). Their omarchy-* click
+// actions are replaced with local tools; unused module definitions dropped.
 {
+    "reload_style_on_change": true,
     "layer": "top",
     "position": "top",
-    "height": 36,
-    "margin-top": 6,
-    "margin-left": 10,
-    "margin-right": 10,
-    "spacing": 8,
+    "spacing": 0,
+
     "modules-left": [
-        "custom/launcher",
-        "wlr/taskbar"
+        "group/left1"
     ],
     "modules-center": [
+        "custom/logo",
         "hyprland/workspaces"
     ],
     "modules-right": [
-        "group/status",
-        "custom/power",
-        "clock"
+        "group/right2",
+        "group/right3"
     ],
-    "custom/launcher": {
-        "format": "Apps",
-        "on-click": "rofi -show drun",
-        "tooltip": false
-    },
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "icon-size": 18,
-        "tooltip-format": "{title}",
-        "on-click": "activate",
-        "on-click-middle": "close"
-    },
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{icon}",
-        "persistent-workspaces": {
-            "*": 5
-        },
-        "format-icons": {
-            "active": "",
-            "default": ""
-        }
-    },
-    "group/status": {
-        "orientation": "horizontal",
+
+    "group/left1": {
+        "orientation": "inherit",
         "modules": [
-            "pulseaudio",
+            "clock"
+        ]
+    },
+    "group/right2": {
+        "orientation": "inherit",
+        "modules": [
+            "custom/clipboard"
+        ]
+    },
+    "group/right3": {
+        "orientation": "inherit",
+        "modules": [
             "network",
+            "backlight",
+            "pulseaudio",
             "battery"
         ]
     },
-    "pulseaudio": {
-        "format": "{icon}{volume}%",
-        "format-muted": "  muted",
-        "format-icons": {
-            "headphone": "     ",
-            "default": [
-                "  ",
-                "   ",
-                "    "
-            ]
-        },
-        "on-click": "pavucontrol",
-        "tooltip-format": "{desc}: {volume}%"
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "cursor": true,
+        "format": "{icon}",
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "custom/logo": {
+        "format": "󰣇",
+        "tooltip-format": "Click for fastfetch",
+        "on-click": "kitty sh -c 'fastfetch; exec bash'"
+    },
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%A %d/%m/%Y}",
+        "tooltip-format": "<span>{calendar}</span>"
     },
     "network": {
-        "format-wifi": "    {essid}",
-        "format-ethernet": "  {ifname}",
-        "format-disconnected": "   offline",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}\nclick to pick a network",
-        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format-disconnected": "no connection",
-        "interval": 10,
+        "format": "{icon} {essid}",
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "󰀂 Ethernet",
+        "format-disconnected": "󰤮 Disconnected",
+        "format-icons": {
+            "wifi": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+            "ethernet": ["󰀂"],
+            "default": ["󰤨"]
+        },
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⬇ {bandwidthDownBytes}  ⬆ {bandwidthUpBytes}",
+        "tooltip-format-ethernet": "{ifname}\n⬇ {bandwidthDownBytes}  ⬆ {bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 2,
+        "spacing": 1,
         "on-click": "~/.config/waybar/scripts/wifi-menu.sh"
     },
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": ["󰖨"],
+        "tooltip-format": "Brightness at {percent}%"
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["", "", ""]
+        },
+        "tooltip-format": "Playing at {volume}%",
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
     "battery": {
-        "bat": "BAT0",
-        "interval": 30,
+        "format": "{capacity}% {icon}",
+        "format-discharging": "{capacity}% {icon}",
+        "format-charging": "{capacity}% {icon}",
+        "format-plugged": "",
+        "format-full": "󰂅",
+        "format-icons": {
+            "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+            "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        },
+        "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
+        "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
+        "interval": 5,
         "states": {
             "warning": 20,
             "critical": 10
         },
-        "format": "{icon}{capacity}%",
-        "format-charging": "    {capacity}%",
-        "format-plugged": "{icon}{capacity}%",
-        "format-icons": [
-            "  ",
-            "  ",
-            "  ",
-            "  ",
-            "  "
-        ],
-        "tooltip-format": "{timeTo}"
+        "on-click": "wlogout -b 5"
     },
-    "custom/power": {
-        "format": "⏻",
-        "on-click": "wlogout -b 5",
-        "tooltip": false
-    },
-    "clock": {
-        "format": "{:%H:%M}",
-        "format-alt": "{:%Y-%m-%d}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "custom/clipboard": {
+        "format": "󰨸",
+        "tooltip": true,
+        "tooltip-format": "Clipboard History",
+        "on-click": "~/.local/bin/clipboard-history"
     }
 }

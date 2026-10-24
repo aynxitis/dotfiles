@@ -1,74 +1,228 @@
+/* Adapted from RafikW19's My-Dotfiles. Colours live in color.css. */
+@import "color.css";
+
 * {
-    font-family: "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 13px;
-    font-weight: bold;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 14px;
+}
+
+#left1 {
+  background-color: @background; 
+  border-radius: 20px;          
+  padding: 2px 5px;
+  margin: 2px 3px;
+  border: 1px solid @border;
+}
+
+.modules-center {
+  background-color: @background; 
+  border-radius: 20px;          
+  padding: 2px 5px;
+  margin: 2px 3px;
+  border: 1px solid @border;
+}
+
+#right2,
+#right3 {
+  background-color: @background; 
+  border-radius: 20px;          
+  padding: 2px 5px;
+  margin: 2px 3px;
+  border: 1px solid @border;
+}
+
+.modules-left {
+  margin-left: 5px;
+}
+
+.modules-right {
+  margin-right: 5px;
+}
+
+#waybar {
+  background: transparent;
 }
 
 window#waybar {
-    background: transparent;
-    color: #1c1c1e;
+  background: transparent;
+  color: transparent;
+  padding: 0;
+  margin: 0px 0px 0px 0px;
+  transition: .5s;
 }
 
-/* Solid light glass pills.
-   #status is the group holding pulseaudio + network + battery, so those three
-   share one capsule instead of carrying three of their own. */
-#custom-launcher,
-#taskbar,
-#workspaces,
-#status,
-#custom-power,
-#clock {
-    background-color: rgba(255, 255, 255, 0.55);
-    border-radius: 20px;
-    padding: 0 14px;
-    margin: 4px 0;
-    color: #1c1c1e;
+mpris.empty {
+  background: transparent;
+  padding: 0;
+  margin: 0;
 }
 
-#custom-launcher {
-    padding: 0 18px;
-}
-
-#taskbar {
-    padding: 0 10px;
-}
-
-#taskbar item {
-    padding: 0 5px;
-}
-
-/* Workspace capsule + dots */
 #workspaces {
-    padding: 4px 6px;
+    background-color: alpha(@border, 0.4);
+    border: none;
+    padding: 2px;
+    margin: 2px 4px;
+    margin-right: 0px;
+    border-radius: 15px;
 }
 
 #workspaces button {
-    padding: 0 6px;
-    border-radius: 20px;
-    color: rgba(0, 0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.15);
-    min-width: 10px;
-    margin: 0 2px;
+    transition: all 500ms ease-in-out;
+    padding: 0px 8px;
+    margin: 0px 1px;
+    color: @muted;
+    border-radius: 15px;
+    background-color: transparent;
 }
 
 #workspaces button.active {
-    background-color: rgba(255, 112, 129, 0.65);
-    padding: 0 18px;
+    padding: 0px 8px;
+    margin: 0px 1px;
+    background: @border;
+    color: @foreground;
+    border-radius: 15px;
+    opacity: 1; 
 }
 
-/* Members of the #status group: no pill of their own, they sit inside it */
-#pulseaudio,
+#workspaces button.empty {
+    opacity: 0.3; 
+}
+
+#workspaces button.empty.active {
+    opacity: 0.75; 
+}
+
+#workspaces button.active:hover,
+#workspaces button:hover {
+    background-color: @muted;
+    color: @background;
+    opacity: 1; 
+    transition: .7s;
+}
+
+#memory,
+#clock,
+#cpu,
+#battery,
 #network,
-#battery {
-    background-color: transparent;
-    padding: 0 6px;
-    margin: 0;
-    color: #1c1c1e;
+#bluetooth,
+#pulseaudio {
+  background-color: @border;
+  color: @foreground;
+  padding: 5px 12px;
+  margin: 2px 2px;
+  border-radius: 15px;
 }
 
-/* Low battery uses the palette's urgent red */
+#clock:hover,
+#backlight:hover,
+#cpu:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover {
+  background-color: @muted;
+  color: @background;
+  transition: .7s;
+}
+
+#custom-clipboard {
+    padding: 0 10px;
+    color: @foreground;
+    font-size: 16px;
+    margin: 0 4px;
+}
+
+#custom-clipboard:hover {
+    color: @foreground;
+    background-color: @border;
+    border-radius: 8px;
+}
+
+#memory {
+  padding: 5px 12px;
+  margin: 2px 2px;
+}
+
+
+#clock {
+  border-radius: 15px;
+  padding: 0 15px;
+  margin: 2px 0px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+
+#custom-logo,
+#battery {
+  color: @foreground;
+  font-size: x-large;
+  min-width: 10px;
+  border-radius: 15px;
+  padding: 0 8px;
+  margin: 2px 3px 5px 0px;
+}
+
+#battery {
+  margin-left: 2px;
+}
+
+#mpris {
+  background: @background;
+  color: @foreground;
+  border-radius: 20px;          
+  padding: 0px 10px;
+  margin: 2px 3px;
+  border: 1px solid @border;
+}
+
+#window {
+  background: @background;
+  color: @foreground;
+  border-radius: 20px;          
+  padding: 0px 10px;
+  margin: 2px 3px;
+  border: 1px solid @border;
+}
+
+window#waybar.empty #window {
+    background-color: transparent; 
+    border: none;
+    padding: 0px 10px;
+}
+
+#network {
+  padding: 0 15px 0 10px;
+}
+
+#pulseaudio {
+  padding: 0 15px 0 10px;
+}
+
+tooltip {
+  border-radius: 15px;
+  background: @background;
+  border: 1px solid @border;
+  color: @foreground;
+}
+
+
+#backlight {
+  font-size: 15px;
+  background-color: @border;
+  color: @foreground;
+  padding: 5px 15px 5px 11px;
+  margin: 2px 2px;
+  border-radius: 15px;
+}
+
+/* Low battery: urgent red (states are defined in config.jsonc). */
 #battery.warning,
 #battery.critical {
-    color: #FF453A;
+  color: #FF453A;
 }
