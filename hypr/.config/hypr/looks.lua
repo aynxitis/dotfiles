@@ -5,33 +5,33 @@
 
 hl.config({
     general = {
-        gaps_in = 5,
+        gaps_in = 7,
         gaps_out = 10,
         border_size = 2,
         col = {
-            active_border   = "rgba(4A6E85ff)",
-            inactive_border = "rgba(2C2C2Eff)",
+            active_border   = "rgb(C6D0F5)",
+            inactive_border = "rgb(303446)",
         },
         resize_on_border = false,
         layout = "dwindle",
     },
 
     decoration = {
-        rounding = 12,
+        rounding = 5,
         rounding_power = 2,
 
         active_opacity   = 1.0,
-        inactive_opacity = 0.92,
+        inactive_opacity = 0.85,
 
         shadow = {
             enabled = true,
             range = 20,
             render_power = 3,
-            color = "0xee1a1a1a",
+            color = "0xee121212",
         },
 
         blur = {
-            enabled = true,
+            enabled = false,
             size = 6,
             passes = 3,
             vibrancy = 0.17,
@@ -58,8 +58,5 @@ hl.animation({ leaf = "fade", enabled = true, speed = 1, bezier = "linear" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "easeOutQuint", style = "slide" })
 hl.animation({ leaf = "border", enabled = true, speed = 1, bezier = "linear" })
 
--- smart gaps: no gaps/border when only one window
-hl.workspace_rule({ workspace = "w[tv1]", gaps_out = { top = 10, right = 0, bottom = 0, left = 0 }, gaps_in = 0 })
-hl.workspace_rule({ workspace = "f[1]", gaps_out = { top = 10, right = 0, bottom = 0, left = 0 }, gaps_in = 0 })
-hl.window_rule({ name = "no-gaps-tv1", match = { float = false, workspace = "w[tv1]" }, border_size = 0, rounding = 0 })
-hl.window_rule({ name = "no-gaps-f1", match = { float = false, workspace = "f[1]" }, border_size = 0, rounding = 0 })
+-- A lone tiled window keeps its gaps and rounding but drops the border.
+hl.window_rule({ name = "no-border-tv1", match = { float = false, workspace = "w[tv1]" }, border_size = 0 })
