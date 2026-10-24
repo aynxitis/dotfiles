@@ -21,5 +21,8 @@ export PATH=~/.npm-global/bin:$PATH
 # Github commits
 alias updates='cd ~/Projects/updates && python3 streak.py'
 
+# Prompt (config: ~/.config/starship.toml). Replaces PS1 above.
+command -v starship >/dev/null && eval "$(starship init bash)"
+
 # Machine-local config (secrets, tokens). Gitignored, never stowed.
 [[ -f ~/.bashrc.local ]] && . ~/.bashrc.local

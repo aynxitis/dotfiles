@@ -1,0 +1,20 @@
+# Adapted from RafikW19's My-Dotfiles.
+
+format = """
+$directory $git_branch$git_status
+$character
+"""
+
+[directory]
+style = "bold cyan"
+
+[git_branch]
+symbol = "󰘬 "
+style = "bold purple"
+
+[git_status]
+style = "bold red"
+
+[character]
+success_symbol = "[~❯](bold white)"
+error_symbol = "[~❯](bold red)"
