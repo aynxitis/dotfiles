@@ -169,6 +169,9 @@ mpris.empty {
 
 #battery {
   margin-left: 2px;
+  /* Same size as the network pill; the shared rule above sets x-large
+     for the logo. */
+  font-size: 14px;
 }
 
 #mpris {
