@@ -95,8 +95,8 @@
         "format": "{capacity}% {icon}",
         "format-discharging": "{capacity}% {icon}",
         "format-charging": "{capacity}% {icon}",
-        "format-plugged": "",
-        "format-full": "󰂅",
+        "format-plugged": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
         "format-icons": {
             "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
             "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
