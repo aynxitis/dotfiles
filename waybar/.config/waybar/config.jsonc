@@ -78,7 +78,7 @@
     },
     "image#volume": {
         "exec": "~/.config/waybar/scripts/volume-ring.sh",
-        "size": 22,
+        "size": 33,
         "signal": 8,
         "interval": 30,
         "tooltip": true,
