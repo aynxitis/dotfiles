@@ -1,47 +1,71 @@
 #!/usr/bin/env bash
-# Draws the volume pill for waybar's image#volume module: the speaker icon
-# inside a ring whose white arc is the volume (full circle = 100%).
-# Prints the SVG path, then the tooltip, as the image module expects.
+# Draws the volume pill for waybar's image#volume module: the same icon the
+# pulseaudio module showed, plus a white line along the pill's own outline,
+# starting at the top and running clockwise; once round the pill = 100%.
+# The pill background and shape stay in style.css; this SVG only overlays
+# the icon and the outline. Prints the SVG path, then the tooltip.
 
 out="${XDG_RUNTIME_DIR:-/tmp}/waybar-volume-ring.svg"
 
-read -r _ vol muted < <(wpctl get-volume @DEFAULT_AUDIO_SINK@)
-pct=$(awk -v v="${vol:-0}" 'BEGIN { printf "%d", v * 100 + 0.5 }')
+# One pactl call: default sink's volume, mute and whether it is headphones.
+read -r pct muted phones < <(pactl --format=json list sinks | python3 -I -c '
+import json, subprocess, sys
+default = subprocess.run(["pactl", "get-default-sink"], capture_output=True, text=True).stdout.strip()
+for s in json.load(sys.stdin):
+    if s["name"] == default:
+        vols = [int(v["value_percent"].rstrip("%")) for v in s["volume"].values()]
+        port = (s.get("active_port") or "").lower()
+        ff = s.get("properties", {}).get("device.form_factor", "")
+        phones = "headphone" in port or "headset" in port or ff in ("headphone", "headset")
+        print(max(vols), int(s["mute"]), int(phones))
+        break
+else:
+    print(0, 0, 0)
+')
 
 fg="#E8E8ED"
-if [[ "$muted" == "[MUTED]" ]]; then
+if (( muted )); then
     icon=$''
-    arc=0
+elif (( phones )); then
+    icon=$''
 elif (( pct < 34 )); then
     icon=$''
-    arc=$pct
 elif (( pct < 67 )); then
     icon=$''
-    arc=$pct
 else
     icon=$''
-    arc=$pct
 fi
+arc=$pct
+(( muted )) && arc=0
 (( arc > 100 )) && arc=100
 
-# Ring geometry in a 64x64 box: radius 28, stroke 5.
-r=28
-dash=$(awk -v r="$r" -v a="$arc" 'BEGIN { c = 2 * 3.14159265 * r; printf "%.2f %.2f", c * a / 100, c }')
-arc_el=""
-(( arc > 0 )) && arc_el="<circle cx=\"32\" cy=\"32\" r=\"$r\" fill=\"none\" stroke=\"$fg\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-dasharray=\"$dash\" transform=\"rotate(-90 32 32)\"/>"
+# Pill box matches the old pulseaudio pill: 33x30, fully rounded ends.
+# The outline path is inset by half the stroke so the line sits inside the
+# pill edge. pathLength=100 makes the dash length equal the percentage.
+w=33 h=30 s=2
+i=$(awk -v s="$s" 'BEGIN { print s / 2 }')
+r=$(awk -v h="$h" -v i="$i" 'BEGIN { print h / 2 - i }')
+outline="M $(awk -v w="$w" 'BEGIN { print w / 2 }') $i \
+H $(awk -v w="$w" -v h="$h" 'BEGIN { print w - h / 2 }') \
+A $r $r 0 0 1 $(awk -v w="$w" -v h="$h" 'BEGIN { print w - h / 2 }') $(awk -v h="$h" -v i="$i" 'BEGIN { print h - i }') \
+H $(awk -v h="$h" 'BEGIN { print h / 2 }') \
+A $r $r 0 0 1 $(awk -v h="$h" 'BEGIN { print h / 2 }') $i Z"
 
+arc_el=""
+(( arc > 0 )) && arc_el="<path d=\"$outline\" pathLength=\"100\" fill=\"none\" stroke=\"$fg\" stroke-width=\"$s\" stroke-linecap=\"round\" stroke-dasharray=\"$arc 100\"/>"
+
+# Icon placed like the old pill: 10px left padding, 14px glyph.
 cat > "$out.tmp" <<EOF
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <circle cx="32" cy="32" r="$r" fill="none" stroke="$fg" stroke-opacity="0.25" stroke-width="5"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="$w" height="$h" viewBox="0 0 $w $h">
   $arc_el
-  <text x="30" y="33" fill="$fg" font-family="JetBrainsMono Nerd Font" font-size="30" text-anchor="middle" dominant-baseline="central">$icon</text>
+  <text x="10" y="$(( h / 2 ))" fill="$fg" font-family="JetBrainsMono Nerd Font" font-size="14" dominant-baseline="central">$icon</text>
 </svg>
 EOF
 mv -f "$out.tmp" "$out"
 
 echo "$out"
-if [[ "$muted" == "[MUTED]" ]]; then
+if (( muted )); then
     echo "Muted ($pct%)"
 else
-    echo "Volume $pct%"
+    echo "Playing at $pct%"
 fi

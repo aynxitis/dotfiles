@@ -122,8 +122,7 @@ mpris.empty {
 #cpu:hover,
 #network:hover,
 #bluetooth:hover,
-#pulseaudio:hover,
-#image.volume:hover {
+#pulseaudio:hover {
   background-color: @muted;
   color: @background;
   transition: .7s;
@@ -208,8 +207,10 @@ window#waybar.empty #window {
   padding: 0 15px 0 10px;
 }
 
+/* The SVG from volume-ring.sh is exactly the old 33x30 pill: no padding,
+   so the CSS background behind it is the same shape and size. */
 #image.volume {
-  padding: 0 10px;
+  padding: 0;
 }
 
 tooltip {
