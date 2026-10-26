@@ -28,8 +28,7 @@
         "orientation": "inherit",
         "modules": [
             "network",
-            "image#volume",
-            "custom/volume-watch",
+            "pulseaudio",
             "battery"
         ]
     },
@@ -76,20 +75,18 @@
         "spacing": 1,
         "on-click": "~/.config/waybar/scripts/wifi-menu.sh"
     },
-    "image#volume": {
-        "exec": "~/.config/waybar/scripts/volume-ring.sh",
-        "size": 22,
-        "signal": 8,
-        "interval": 30,
-        "tooltip": true,
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "headset": "",
+            "default": ["", "", ""]
+        },
+        "tooltip-format": "Playing at {volume}%",
+        "scroll-step": 5,
         "on-click": "pavucontrol",
-        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    },
-    "custom/volume-watch": {
-        "exec": "~/.config/waybar/scripts/volume-watch.sh",
-        "tooltip": false
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "battery": {
         "format": "{capacity}% {icon}",
