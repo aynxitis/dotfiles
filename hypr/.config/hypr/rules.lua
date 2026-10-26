@@ -4,9 +4,8 @@
 -- https://wiki.hypr.land/Configuring/Window-Rules/
 -- Placement and float rules, applied as windows open.
 --
--- Note: the no-gaps rules for w[tv1] / f[1] deliberately stay in looks.lua.
--- They are one half of the smart-gaps behaviour and only make sense next to
--- the workspace_rule calls they pair with.
+-- The lone-window no-border rule (w[tv1]) lives in looks.lua with the rest
+-- of the border settings.
 
 -- Ignore maximize requests from every client. kitty's remember_window_size
 -- saves "window-state": "maximized" to ~/.cache/kitty/main.json, and each new
@@ -18,7 +17,6 @@ hl.window_rule({ name = "brave-ws1", match = { class = "brave-browser" }, worksp
 hl.window_rule({ name = "discord-ws2", match = { class = "discord" }, workspace = "2" })
 hl.window_rule({ name = "spotify-ws2", match = { class = "spotify" }, workspace = "2" })
 hl.window_rule({ name = "code-ws4", match = { class = "code" }, workspace = "4" })
-hl.window_rule({ name = "obsidian-ws3", match = { class = "md.obsidian.Obsidian" }, workspace = "3" })
 
 ---------------------
 ---- LAYER RULES ----

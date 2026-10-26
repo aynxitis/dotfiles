@@ -215,7 +215,6 @@ assign [class="Spotify"] 2
 exec --no-startup-id brave
 exec --no-startup-id discord
 exec --no-startup-id spotify
-exec --no-startup-id code
 
 # Toggle Mic
 exec --no-startup-id sh -c 'sleep 3; ~/.config/i3/scripts/mic-mute-all.sh mute'

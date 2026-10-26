@@ -24,7 +24,6 @@ hl.on("hyprland.start", function()
 
     -- apps
     hl.exec_cmd("brave")
-    hl.exec_cmd("code")
     hl.exec_cmd("spotify")
     hl.exec_cmd("discord")
 end)
